@@ -8,6 +8,7 @@ public class Singleton{
 
 	public float latitudeGps {get; set;}
 	public float longitudeGps { get; set;}
+    public float compassOrientation { get; set; }
 	public float tileX;
 	public float tileY;
 	public float localScaleX;
@@ -20,6 +21,7 @@ public class Singleton{
 		longitudeGps 	= 0.0f;
 		tileX 		 	= 0.0f;
 		tileY		 	= 0.0f;
+        compassOrientation = 0.0f;
 	}
 
 	public static Singleton GetInstance() {

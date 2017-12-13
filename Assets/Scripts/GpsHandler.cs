@@ -57,12 +57,12 @@ public class GpsHandler : MonoBehaviour {
 	void Update () {
 
 		Singleton.GetInstance().longitudeGps = Input.location.lastData.longitude;
-		Singleton.GetInstance().latitudeGps = Input.location.lastData.latitude;
-		//textBox.GetComponent<InputField>().text = Singleton.GetInstance().longitudeGps.ToString();
-	}
+        Singleton.GetInstance().latitudeGps = Input.location.lastData.latitude;
+        textBox.GetComponent<InputField>().text = Singleton.GetInstance().longitudeGps.ToString();
+    }
 
 
-	public float CalcDistance(float lon1, float lat1, float lon2, float lat2){
+    public float CalcDistance(float lon1, float lat1, float lon2, float lat2){
 		int R = 6371; // radius of earth in km
 		float dLat = (lat2-lat1)*(Mathf.PI / 180);
 		float dLon = (lon2-lon1)*(Mathf.PI / 180);

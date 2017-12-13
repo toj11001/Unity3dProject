@@ -26,7 +26,7 @@ public class FixPoint : MonoBehaviour {
 
 		double b = Singleton.GetInstance().DrawCubeY(fixPointlat, Singleton.GetInstance().TileToWorldPos(x, y+1, Singleton.GetInstance().zoom).Y, 
 			Singleton.GetInstance().TileToWorldPos(x, y, Singleton.GetInstance().zoom).Y);
-		Debug.Log("Position in tile "+ a+ " - "+b);
+		//Debug.Log("Position in tile "+ a+ " - "+b);
 		this.gameObject.transform.position = new Vector3((float)a-0.5f, (float)b-0.5f, this.gameObject.transform.position.z); 
 	}
 
