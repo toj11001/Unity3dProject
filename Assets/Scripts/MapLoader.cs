@@ -9,9 +9,9 @@ public class MapLoader : MonoBehaviour {
 	public GameObject textBox;
 
 
-	private float lat1 = 41.27646f;
-	private float lon1 = 1.982703f;
-	private int zoom = 14;
+	private float lat1 = 41.286690f;
+	private float lon1 = 1.978701f;
+	private int zoom = 16;
 
 	// Use this for initialization
     IEnumerator Start () {
