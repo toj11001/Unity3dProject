@@ -17,15 +17,15 @@ public class MapLoader : MonoBehaviour {
     IEnumerator Start () {
 		//lon1 = Singleton.GetInstance().longitudeGps;
 		//lat1 = Singleton.GetInstance().latitudeGps;
-		textBox.GetComponent<InputField>().text = "MP"+lon1.ToString();
+		textBox.GetComponent<InputField>().text = "MP ("+ lon1.ToString() + "; "+ lat1.ToString() + ")";
 		int maxWait = 5;
 		while (lon1==0.0f && maxWait > 0)
 		{
 			yield return new WaitForSeconds(5);
 			maxWait--;
 			lon1 = Singleton.GetInstance().longitudeGps;
-			textBox.GetComponent<InputField>().text = "MP"+lon1.ToString();
-		}
+			textBox.GetComponent<InputField>().text = "MP (" + lon1.ToString() + "; " + lat1.ToString() + ")";
+        }
 //		lon1 = Singleton.GetInstance().longitudeGps;
 //		lat1 = Singleton.GetInstance().latitudeGps;
 
