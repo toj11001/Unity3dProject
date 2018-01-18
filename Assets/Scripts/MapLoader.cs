@@ -6,10 +6,11 @@ using UnityEngine.UI;
 public class MapLoader : MonoBehaviour {
 
 	public GameObject plane; 
-	public GameObject textBox;
+	public GameObject textBoxLat;
+    public GameObject textBoxLon;
 
 
-	private float lat1 = 41.286690f;
+    private float lat1 = 41.286690f;
 	private float lon1 = 1.978701f;
 	private int zoom = 16;
 
@@ -17,19 +18,22 @@ public class MapLoader : MonoBehaviour {
     IEnumerator Start () {
 		//lon1 = Singleton.GetInstance().longitudeGps;
 		//lat1 = Singleton.GetInstance().latitudeGps;
-		textBox.GetComponent<InputField>().text = "MP ("+ lon1.ToString() + "; "+ lat1.ToString() + ")";
-		int maxWait = 5;
+		textBoxLat.GetComponent<InputField>().text = lat1.ToString() + "N";
+        textBoxLon.GetComponent<InputField>().text = lon1.ToString() + "E";
+        int maxWait = 5;
 		while (lon1==0.0f && maxWait > 0)
 		{
 			yield return new WaitForSeconds(5);
 			maxWait--;
+            lat1 = Singleton.GetInstance().latitudeGps;
 			lon1 = Singleton.GetInstance().longitudeGps;
-			textBox.GetComponent<InputField>().text = "MP (" + lon1.ToString() + "; " + lat1.ToString() + ")";
+            textBoxLat.GetComponent<InputField>().text = lat1.ToString() + "N";
+            textBoxLon.GetComponent<InputField>().text = lon1.ToString() + "E";
         }
-//		lon1 = Singleton.GetInstance().longitudeGps;
-//		lat1 = Singleton.GetInstance().latitudeGps;
+        //		lon1 = Singleton.GetInstance().longitudeGps;
+        //		lat1 = Singleton.GetInstance().latitudeGps;
 
-		Singleton.GetInstance().WorldToTilePos(lon1,lat1,zoom);
+        Singleton.GetInstance().WorldToTilePos(lon1,lat1,zoom);
 
 		Singleton.GetInstance().localScaleX = 1.0f;
 		Singleton.GetInstance().localScaleY = 1.0f;
