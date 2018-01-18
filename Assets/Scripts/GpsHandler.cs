@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GpsHandler : MonoBehaviour {
-	public GameObject textBox;
+	//public GameObject textBox;
 
 
 
@@ -58,7 +58,6 @@ public class GpsHandler : MonoBehaviour {
 
 		Singleton.GetInstance().longitudeGps = Input.location.lastData.longitude;
         Singleton.GetInstance().latitudeGps = Input.location.lastData.latitude;
-        textBox.GetComponent<InputField>().text = Singleton.GetInstance().longitudeGps.ToString();
     }
 
 
