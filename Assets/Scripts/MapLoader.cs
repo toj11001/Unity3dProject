@@ -8,6 +8,7 @@ public class MapLoader : MonoBehaviour {
 	public GameObject plane; 
 	public GameObject textBoxLat;
     public GameObject textBoxLon;
+    public GameObject textBoxDistance;
 
     private float lon1 = 41.284535f;
     private float lat1 = 1.980892f;
@@ -50,6 +51,18 @@ public class MapLoader : MonoBehaviour {
 
 
         StartCoroutine(CreateTile(lon1, lat1, zoom));
+    }
+
+    private void Update()
+    {
+        float userLongitude, userLatitude;
+        float targetLongitude, targetLatitude;
+        userLongitude = Singleton.GetInstance().longitudeGps;
+        userLatitude = Singleton.GetInstance().latitudeGps;
+        targetLongitude = Singleton.GetInstance().targetLongitude;
+        targetLatitude = Singleton.GetInstance().targetLatitude;
+        float distance = Singleton.GetInstance().CalcDistance(userLongitude, userLatitude, targetLongitude, targetLatitude);
+        textBoxDistance.GetComponent<InputField>().text = distance.ToString();
     }
 
     IEnumerator CreateTile(float lon, float lat, int zoom)

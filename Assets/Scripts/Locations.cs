@@ -44,19 +44,6 @@ public class Locations : MonoBehaviour {
             child.GetComponentInChildren<Text>().text = locations[p++];
         }
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        float userLongitude, userLatitude;
-        float targetLongitude, targetLatitude;
-        userLongitude = Singleton.GetInstance().longitudeGps;
-        userLatitude = Singleton.GetInstance().latitudeGps;
-        targetLongitude = Singleton.GetInstance().targetLongitude;
-        targetLatitude = Singleton.GetInstance().targetLatitude;
-        float distance = Singleton.GetInstance().CalcDistance(userLongitude, userLatitude, targetLongitude, targetLatitude);
-        distanceLabel.GetComponent<InputField>().text = distance.ToString();
-    }
 
 
     public float[] GetLocationCoordinates(string location)
