@@ -7,21 +7,21 @@ public class GpsHandler : MonoBehaviour {
 
     //public GameObject textBox;
 
-    //[SerializeField]
-    //private Text label;
+    [SerializeField]
+    private Text label;
 
 
 
     // Use this for initialization
     IEnumerator Start () {
-		
 
-		// First, check if user has location service enabled
-		if (!Input.location.isEnabledByUser)
+        Input.compass.enabled = true;
+        // First, check if user has location service enabled
+        if (!Input.location.isEnabledByUser)
 			yield break;
 
 		// Start service before querying location
-		Input.location.Start();
+		Input.location.Start(20f,20f);
 
 		// Wait until service initializes
 		int maxWait = 20;
@@ -34,34 +34,50 @@ public class GpsHandler : MonoBehaviour {
 		// Service didn't initialize in 20 seconds
 		if (maxWait < 1)
 		{
-			print("Timed out");
+			label.text = "Timed out";
 			yield break;
 		}
 
 		// Connection has failed
 		if (Input.location.status == LocationServiceStatus.Failed)
 		{
-			print("Unable to determine device location");
+			label.text = "Unable to determine device location";
 			yield break;
 		}
 		else
 		{
 			// Access granted and location value could be retrieved
-			print("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
-		}
+			label.text = (
+                "Location: " + Input.location.lastData.latitude + " " 
+                + Input.location.lastData.longitude + " " 
+                + Input.location.lastData.altitude + " " 
+                + Input.location.lastData.horizontalAccuracy + " " 
+                + Input.location.lastData.timestamp
+                );
+            //Singleton.GetInstance().longitudeGps = Input.location.lastData.longitude;
+            //Singleton.GetInstance().latitudeGps = Input.location.lastData.latitude;
 
-		// Stop service if there is no need to query location updates continuously
-		//Input.location.Stop();
+            Singleton.GetInstance().longitudeGps = Input.location.lastData.latitude;
+            Singleton.GetInstance().latitudeGps = Input.location.lastData.longitude;
+            Singleton.GetInstance().gpsReady = true;
 
-	
+        }
 
-	}
+        // Stop service if there is no need to query location updates continuously
+        //Input.location.Stop();
+
+
+
+    }
 
 	// Update is called once per frame
 	void Update () {
 
-		Singleton.GetInstance().longitudeGps = Input.location.lastData.longitude;
-        Singleton.GetInstance().latitudeGps = Input.location.lastData.latitude;
+        //Singleton.GetInstance().longitudeGps = Input.location.lastData.longitude;
+        //Singleton.GetInstance().latitudeGps = Input.location.lastData.latitude;
+
+        Singleton.GetInstance().longitudeGps = Input.location.lastData.latitude;
+        Singleton.GetInstance().latitudeGps = Input.location.lastData.longitude;
 
         //label.text = Input.location.lastData.timestamp.ToString();
     }

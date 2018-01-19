@@ -9,11 +9,15 @@ public class Singleton{
 	public float latitudeGps {get; set;}
 	public float longitudeGps { get; set;}
     public float compassOrientation { get; set; }
-	public float tileX;
+    public float targetLatitude { get; set; }
+    public float targetLongitude { get; set; }
+    public string targetLocation { get; set; }
+    public float tileX;
 	public float tileY;
 	public float localScaleX;
 	public float localScaleY;
 	public int zoom;
+    public bool gpsReady { get; set; }
 
 
 	private Singleton(){
@@ -22,6 +26,7 @@ public class Singleton{
 		tileX 		 	= 0.0f;
 		tileY		 	= 0.0f;
         compassOrientation = 0.0f;
+        gpsReady = false;
 	}
 
 	public static Singleton GetInstance() {
