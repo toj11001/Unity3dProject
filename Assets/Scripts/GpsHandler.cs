@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GpsHandler : MonoBehaviour {
-	//public GameObject textBox;
+
+    //public GameObject textBox;
+
+    //[SerializeField]
+    //private Text label;
 
 
 
-	// Use this for initialization
-	IEnumerator Start () {
+    // Use this for initialization
+    IEnumerator Start () {
 		
 
 		// First, check if user has location service enabled
@@ -58,6 +62,8 @@ public class GpsHandler : MonoBehaviour {
 
 		Singleton.GetInstance().longitudeGps = Input.location.lastData.longitude;
         Singleton.GetInstance().latitudeGps = Input.location.lastData.latitude;
+
+        //label.text = Input.location.lastData.timestamp.ToString();
     }
 
 

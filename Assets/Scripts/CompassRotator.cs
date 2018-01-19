@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Rotator : MonoBehaviour {
+public class CompassRotator : MonoBehaviour {
 
     public GameObject xTest;
     public GameObject yTest;
@@ -26,16 +26,17 @@ public class Rotator : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        float currentOrientation = Singleton.GetInstance().compassOrientation;
-        //float currentOrientation = 90*Time.deltaTime;
+        //float currentOrientation = Singleton.GetInstance().compassOrientation;
+        //float currentOrientation = 90 * Time.deltaTime;
+        float currentOrientation = -Singleton.GetInstance().compassOrientation;
         //Quaternion compassRotationTest = Quaternion.Euler(0, currentOrientation, 0);
         //Quaternion compassRotation = Quaternion.Euler(x, y, z);
-        x = int.Parse(xTest.GetComponent<InputField>().text);
-        y = int.Parse(yTest.GetComponent<InputField>().text);
-        z = int.Parse(zTest.GetComponent<InputField>().text);
+        //x = int.Parse(xTest.GetComponent<InputField>().text);
+        //y = int.Parse(yTest.GetComponent<InputField>().text);
+        //z = int.Parse(zTest.GetComponent<InputField>().text);
         //Quaternion compassRotation = Quaternion.Euler(x, y, z);
-        float xDeg = currentOrientation + x;
-        Quaternion compassRotation = Quaternion.Euler(xDeg, y, z);
+        float zDeg = currentOrientation + z;
+        Quaternion compassRotation = Quaternion.Euler(x, y, zDeg);
         Debug.Log(compassRotation.ToString());
         //Quaternion compassRotation = Quaternion.Euler(0.5f, 0.5f, 0);
         this.transform.rotation = Quaternion.RotateTowards(initialOrientation, compassRotation, maxDegreesDelta: 360f);
